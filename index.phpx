@@ -1,5 +1,22 @@
 import { bridge } from 'core/bridge'
 
+/// docid: phpx/neo4j/connect()
+/// <Function name="connect">
+///   <Description>PHPX standard module function `connect` from `neo4j`.</Description>
+///   <Parameter name="$uri" type="mixed" required="false" typeLink="/docs/php/types/mixed">
+///     Parameter $uri.
+///   </Parameter>
+///   <Parameter name="$user" type="mixed" required="false" typeLink="/docs/php/types/mixed">
+///     Parameter $user.
+///   </Parameter>
+///   <Parameter name="$password" type="mixed" required="false" typeLink="/docs/php/types/mixed">
+///     Parameter $password.
+///   </Parameter>
+///   <Parameter name="$db" type="mixed" required="false" typeLink="/docs/php/types/mixed">
+///     Parameter $db.
+///   </Parameter>
+///   <ReturnType type="mixed" typeLink="/docs/php/types/mixed" />
+/// </Function>
 export function connect($uri = 'bolt://localhost:7687', $user = 'neo4j', $password = '', $db = 'neo4j') {
     return bridge('neo4j', 'connect', {
         uri: $uri,
@@ -9,6 +26,23 @@ export function connect($uri = 'bolt://localhost:7687', $user = 'neo4j', $passwo
     })
 }
 
+/// docid: phpx/neo4j/query()
+/// <Function name="query">
+///   <Description>PHPX standard module function `query` from `neo4j`.</Description>
+///   <Parameter name="$handle" type="mixed" required="true" typeLink="/docs/php/types/mixed">
+///     Parameter $handle.
+///   </Parameter>
+///   <Parameter name="$cypher" type="mixed" required="true" typeLink="/docs/php/types/mixed">
+///     Parameter $cypher.
+///   </Parameter>
+///   <Parameter name="$params" type="mixed" required="false" typeLink="/docs/php/types/mixed">
+///     Parameter $params.
+///   </Parameter>
+///   <Parameter name="$columns" type="mixed" required="false" typeLink="/docs/php/types/mixed">
+///     Parameter $columns.
+///   </Parameter>
+///   <ReturnType type="mixed" typeLink="/docs/php/types/mixed" />
+/// </Function>
 export function query($handle, $cypher, $params = {}, $columns = []) {
     return bridge('neo4j', 'query', {
         handle: $handle,
@@ -18,6 +52,20 @@ export function query($handle, $cypher, $params = {}, $columns = []) {
     })
 }
 
+/// docid: phpx/neo4j/execute()
+/// <Function name="execute">
+///   <Description>PHPX standard module function `execute` from `neo4j`.</Description>
+///   <Parameter name="$handle" type="mixed" required="true" typeLink="/docs/php/types/mixed">
+///     Parameter $handle.
+///   </Parameter>
+///   <Parameter name="$cypher" type="mixed" required="true" typeLink="/docs/php/types/mixed">
+///     Parameter $cypher.
+///   </Parameter>
+///   <Parameter name="$params" type="mixed" required="false" typeLink="/docs/php/types/mixed">
+///     Parameter $params.
+///   </Parameter>
+///   <ReturnType type="mixed" typeLink="/docs/php/types/mixed" />
+/// </Function>
 export function execute($handle, $cypher, $params = {}) {
     return bridge('neo4j', 'execute', {
         handle: $handle,
@@ -26,10 +74,29 @@ export function execute($handle, $cypher, $params = {}) {
     })
 }
 
+/// docid: phpx/neo4j/close()
+/// <Function name="close">
+///   <Description>PHPX standard module function `close` from `neo4j`.</Description>
+///   <Parameter name="$handle" type="mixed" required="true" typeLink="/docs/php/types/mixed">
+///     Parameter $handle.
+///   </Parameter>
+///   <ReturnType type="mixed" typeLink="/docs/php/types/mixed" />
+/// </Function>
 export function close($handle) {
     return bridge('neo4j', 'close', { handle: $handle })
 }
 
+/// docid: phpx/neo4j/run_cql()
+/// <Function name="run_cql">
+///   <Description>PHPX standard module function `run_cql` from `neo4j`.</Description>
+///   <Parameter name="$handle" type="mixed" required="true" typeLink="/docs/php/types/mixed">
+///     Parameter $handle.
+///   </Parameter>
+///   <Parameter name="$cql_value" type="mixed" required="true" typeLink="/docs/php/types/mixed">
+///     Parameter $cql_value.
+///   </Parameter>
+///   <ReturnType type="mixed" typeLink="/docs/php/types/mixed" />
+/// </Function>
 export function run_cql($handle, $cql_value) {
     if (!isset($cql_value['__type']) || $cql_value['__type'] !== 'cql') {
         return { ok: false, error: 'run_cql expects a cql value (produced by the cql keyword)', rows: [] }
